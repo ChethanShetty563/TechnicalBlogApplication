@@ -10,20 +10,21 @@ import technicalbog.service.PostService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private PostService postService;
 
     public HomeController() {
         System.out.println("***HomeController***");
     }
-    @Autowired
-    private PostService postService;
+
     @RequestMapping("/")
-    public String getAllPost(Model model) {
+    public String getAllPost(Model model) throws ClassNotFoundException {
 
-        ArrayList<Post>  posts=postService.getAllPosts();
-
+        List<Post> posts=postService.getAllPosts();
 
         model.addAttribute("posts",posts);
 
